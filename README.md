@@ -2,8 +2,8 @@
 
 # PHP RSA Util
 
-Utilities for generating and verifying signatures and cibvertubg
-vetween various key formats.
+Utilities for generating and verifying signatures and converting
+between various key formats.
 
 Primary operations revolve around ```TOGoS_RSAUtil_Signature```
 objects, which represent the signing of a specific piece of data with
