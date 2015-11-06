@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TOGoS/PHPRSAUtil.svg?branch=master)](https://travis-ci.org/TOGoS/PHPRSAUtil)
+
 # PHP RSA Util
 
 Utilities for generating and verifying signatures and cibvertubg
