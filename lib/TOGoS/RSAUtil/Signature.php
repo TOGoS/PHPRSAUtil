@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @api
+ */
 class TOGoS_RSAUtil_Signature implements JsonSerializable
 {
 	/**
@@ -15,10 +18,18 @@ class TOGoS_RSAUtil_Signature implements JsonSerializable
 	 */
 	protected $payload;
 	/**
+	 * A string identifying the algorithms used to hash and sign the
+	 * content.
+	 * 
 	 * E.g. SHA1withRSA.  This is technically independent of
 	 * payloadUri, but if payload URI happens to include the hash that
 	 * gets signed (urn:sha1:.... in the SHA1 case), then we can verify
 	 * the signature without fetching the data.
+	 *
+	 * The algorithm names come from Java:
+	 * http://docs.oracle.com/javase/7/docs/api/java/security/Signature.html
+	 * PHP has a separate set of algorithm names that are spelled
+	 * differently: http://php.net/manual/en/function.openssl-get-md-methods.php
 	 */
 	protected $algorithmName;
 	/**
