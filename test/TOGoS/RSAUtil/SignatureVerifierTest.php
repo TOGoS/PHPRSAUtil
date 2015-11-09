@@ -9,7 +9,7 @@ class TOGoS_RSAUtil_SignatureVerifierTest extends PHPUnit_Framework_TestCase
 		
 		$pubKeyUri = $DS->store($keyPair['publicKeyDer']);
 		// I guess we're also testing generateKeyPair, then.
-		$this->assertEquals($pubKeyUri, $keyPair['publicKeyUrn']);
+		$this->assertEquals($pubKeyUri, $keyPair['publicKeyUri']);
 		
 		$data = "Hello, world!";
 		

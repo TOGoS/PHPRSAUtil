@@ -27,7 +27,7 @@ class TOGoS_RSAUtil
 		return array(
 			'privateKeyDer' => $privateKeyDer,
 			'publicKeyDer' => $publicKeyDer,
-			'publicKeyUrn' => "urn:sha1:".TOGoS_Base32::encode(hash('sha1',$publicKeyDer,true))
+			'publicKeyUri' => "urn:sha1:".TOGoS_Base32::encode(hash('sha1',$publicKeyDer,true))
 		);
 	}
 	
