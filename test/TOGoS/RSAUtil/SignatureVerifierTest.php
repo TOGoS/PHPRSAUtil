@@ -3,17 +3,17 @@
 class TOGoS_RSAUtil_SignatureVerifierTest extends PHPUnit_Framework_TestCase
 {
 	public function testVerifyValidSignature() {
-		$keyPair = TOGoS_RSAUtil::generateKeyPair(array('size'=>2048)); // For faster unit testing
+		$keyPair = TOGoS_RSAUtil_KeyPair::generate(array('size'=>1024)); // For faster unit testing
 		
 		$DS = new TOGoS_RSAUtil_DataStore();
 		
-		$pubKeyUri = $DS->store($keyPair['publicKeyDer']);
+		$pubKeyUri = $DS->store($keyPair->getPublicKeyDer());
 		// I guess we're also testing generateKeyPair, then.
-		$this->assertEquals($pubKeyUri, $keyPair['publicKeyUri']);
+		$this->assertEquals($pubKeyUri, $keyPair->getPublicKeyUri());
 		
 		$data = "Hello, world!";
 		
-		$sig = TOGoS_RSAUtil::sign($data, $keyPair['privateKeyDer'], $pubKeyUri);
+		$sig = TOGoS_RSAUtil::sign($data, $keyPair);
 		
 		$this->assertTrue(TOGoS_RSAUtil::verif($sig, $DS), "Signature should have verified!");
 
