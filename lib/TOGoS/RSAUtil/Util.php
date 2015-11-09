@@ -2,15 +2,15 @@
 
 class TOGoS_RSAUtil_Util
 {
-	public static function derToPem($der) {
+	public static function derToPem($der, $type='PUBLIC KEY') {
 		$pem = chunk_split(base64_encode($der), 64, "\n");
-		$pem = "-----BEGIN PUBLIC KEY-----\n".$pem."-----END PUBLIC KEY-----\n";
+		$pem = "-----BEGIN $type-----\n".$pem."-----END $type-----\n";
 		return $pem;
 	}
 	
 	public static function looksLikePem($pem, &$content='') {
-		if( preg_match('#--+BEGIN PUBLIC KEY--+\n(.*)\n--+END PUBLIC KEY--+#s', $pem, $bif) ) {
-			$content = $bif[1];
+		if( preg_match('#--+BEGIN (PUBLIC KEY|PRIVATE KEY)--+\n(.*)\n--+END \1--+#s', $pem, $bif) ) {
+			$content = $bif[2];
 			return true;
 		} else {
 			return false;
