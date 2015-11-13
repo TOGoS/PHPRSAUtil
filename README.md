@@ -34,7 +34,7 @@ $publicKeyUri = "urn:sha1:".TOGoS_Base32::encode(hash('sha1',$publicKey,true));
 $sig = TOGoS_RSAUtil::sign($payload, $privateKey, OPENSSL_ALGO_SHA1);
 
 
-$sigCodec = new TOGoS_RSAUtil_BAA3SignatureCodec();
+$sigCodec = new TOGoS_RSAUtil_XKRTSignatureCodec();
 $sigBlob = $sigCodec->encode($sig);
 ```
 
@@ -43,11 +43,11 @@ Send ```$sigBlob``` to someone, and they can...
 ```php
 /*
  * Assuming $dataStore and $sigBlob are input variables
- * Using BAA3 codec, the public key and payload data are referenced by
+ * Using XKRT codec, the public key and payload data are referenced by
  * but not contained in the signature.  We fetch them from $dataStore.
  */
 
-$sigCodec = new TOGoS_RSAUtil_BAA3SignatureCodec();
+$sigCodec = new TOGoS_RSAUtil_XKRTSignatureCodec();
 $sig = $sigCodec->decode($sigBlob);
 TOGoS_RSAUtil::verify($sig, $dataStore);
 echo "Signature was valid!  Here's the data!\n";

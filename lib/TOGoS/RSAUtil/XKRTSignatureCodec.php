@@ -1,6 +1,6 @@
 <?php
 
-class TOGoS_RSAUtil_BAA3SignatureCodec implements TOGoS_RSAUtil_SignatureCodec
+class TOGoS_RSAUtil_XKRTSignatureCodec implements TOGoS_RSAUtil_SignatureCodec
 {
 	// See http://piccouch.appspot.com/uri-res/raw/urn:bitprint:XKRTAT4AEABXDGUEEKKDMARNVUMZUIFG.L5LLQZODRQYNREWM6FRU74V5SEJZ3QXGYLNGILI/signed-data-schema.rdf
 	const TBB_MAGIC = "TBB\x81";
@@ -47,11 +47,11 @@ class TOGoS_RSAUtil_BAA3SignatureCodec implements TOGoS_RSAUtil_SignatureCodec
 	public function decode( Nife_Blob $blob ) {
 		$blob = (string)$blob;
 		if( substr($blob, 0, 24) !== self::TBB_MAGIC . self::TBB_SCHEMA_ID ) {
-			throw new Exception("Malformed BAA3 signature; header does not match expected value.");
+			throw new Exception("Malformed XKRT signature; header does not match expected value.");
 		}
 		if( strlen($blob) < 64 ) {
 			throw new Exception(
-				"Malformed BAA3 signature; too short to contain key and content hashes (".strlen($blob).
+				"Malformed XKRT signature; too short to contain key and content hashes (".strlen($blob).
 				" of minimum 64 bytes)");
 		}
 		$keyHash     = substr($blob, 24, 20);
